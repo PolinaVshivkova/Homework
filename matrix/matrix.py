@@ -22,7 +22,7 @@ class Matrix:
 
     def __add__(self, other):
         if self.check_shape_for_add(other):
-            new = self.data
+            new = deepcopy(self.data)
             for x in range(self.shape[0]):
                 for y in range(self.shape[1]):
                     new[x][y] += other.data[x][y]
@@ -37,7 +37,7 @@ class Matrix:
 
     def __sub__(self, other):
         if self.check_shape_for_add(other):
-            new = self.data
+            new = deepcopy(self.data)
             for i in range(self.shape[0]):
                 for j in range(self.shape[1]):
                     new[i][j] -= other.data[i][j]
@@ -52,7 +52,7 @@ class Matrix:
 
     def __mul__(self, other):
         if type(other) == float or type(other) == int:
-            new = self.data
+            new = deepcopy(self.data)
             for i in range(self.shape[0]):
                 for j in range(self.shape[1]):
                     new[i][j] *= other
