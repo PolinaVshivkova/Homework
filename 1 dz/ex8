@@ -1,0 +1,38 @@
+def make_shades(alley, k):
+    shades, shade, flag = [], 0, False
+    if k <= 0:
+        alley.reverse()
+        k *= -1
+        flag = True
+    for tree in alley:
+        if int(tree) * k > shade:
+            shade = int(tree) * k + 1
+        if int(tree) > 0 and shade == 0:
+            shades.append(True)
+        elif shade == 0:
+            shades.append(False)
+        else:
+            shades.append(True)
+            shade -= 1
+    if flag:
+        shades.reverse()
+    return shades
+
+
+def calculate_sunny_length(shades):
+    return shades.count(False)
+
+
+def main():
+    k = int(input("Kоэффициент k = "))
+    lst = input("Cписок высот деревьев вдоль аллеи:")
+    if calculate_sunny_length(make_shades(lst.split(), k)) >= 10:
+        print("Обгорел")
+    else:
+        print("Тени достаточно")
+
+
+print(calculate_sunny_length([True, True, True, True, True, True, False, False, False, True, True,
+                              True, True, True, True, True, False]))
+print(make_shades([0, 0, 0, 4, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 3, 1], 1))
+main()
